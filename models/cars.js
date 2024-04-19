@@ -4,9 +4,11 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class cars extends Model {
-
+    
     static associate(models) {
-      cars.belongsTo(models.sizes, { foreignKey: 'sizes_id' })
+      cars.belongsTo(models.sizes, {
+        foreignKey: 'sizes_id'
+      })
     }
   }
   cars.init({
@@ -17,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'cars',
+    tableName: 'cars',
     paranoid: true
   });
   return cars;

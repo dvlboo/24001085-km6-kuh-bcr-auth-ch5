@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { getCars, getCar, createCar, updateCar, deleteCar } = require('../controller/cars')
+const { getCars, getCar, createCar, updateCar, deleteCar } = require('../controllers/cars')
 const { authMiddelware } = require('../../src/middleware/auth')
 
 router
