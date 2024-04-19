@@ -31,7 +31,7 @@ exports.createUser = async (payload) => {
   return data
 }
 
-exports.getUsers = async () => data = await students.findAll()
+exports.getUsers = async () => data = await user.findAll()
 
 exports.getUserById = async (id) => {
   const key = `users:${id}`
@@ -70,3 +70,22 @@ exports.getUserByEmail = async (email) => {
 
   throw new Error(`Users is Not Found`)
 }
+
+exports.delUser = async (id) => {
+  const key = `users:${id}`;
+  let data = await getData(key);
+
+  if (data) {
+    await deleteData(key);
+    return data;
+  }
+
+  const deluser = await user.findByPk(id);
+
+  if (deluser) {
+    await deluser.destroy();
+    return deluser;
+  }
+
+  throw new Error(`User with ID ${id} Not Found`);
+};
