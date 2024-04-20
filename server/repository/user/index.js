@@ -3,7 +3,8 @@ const { uploader } = require('../../../src/helper/cloudinary')
 const { getData, setData, deleteData } = require("../../../src/helper/redis");
 const crypto = require('crypto')
 const bcrypt = require('bcrypt')
-const path = require('path')
+const path = require('path');
+const { where } = require('sequelize');
 
 exports.createUser = async (payload) => {
   // encrypt the pass
@@ -70,6 +71,24 @@ exports.getUserByEmail = async (email) => {
 
   throw new Error(`Users is Not Found`)
 }
+
+exports.editRoles = async (payload) => {
+  const { email, roles } = payload;
+
+  // Cari pengguna berdasarkan email
+  const editUser = await user.findOne({
+    where: { email }
+  });
+
+  if (editUser) {
+    editUser.roles = roles;
+    await editUser.save();
+
+    return editUser;
+  }
+
+  throw new Error(`User with email ${email} Not Found`);
+};
 
 exports.delUser = async (id) => {
   const key = `users:${id}`;

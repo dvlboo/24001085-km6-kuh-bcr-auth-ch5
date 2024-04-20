@@ -1,4 +1,4 @@
-const { createUser, getUserByEmail, getUserById, getUsers, delUser } = require('../../repository/user')
+const { createUser, getUserByEmail, getUserById, getUsers, delUser, editRoles } = require('../../repository/user')
 const jsonwebtoken = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -132,26 +132,7 @@ exports.superLogin = async (payload) => {
   return data
 }
 
-exports.editRoles = async (payload) => {
-  // get user by email
-  const user = await getUserByEmail(payload.email)
-
-  if (!user) {
-    throw new Error(`User with email: ${payload.email} Not Found`)
-  }
-
-  user.roles = payload.roles
-    
-  await user.save()
-
-  // delete password
-  user?.dataValues?.password 
-  ? delete user?.dataValues?.password
-  : delete user?.password
-
-  return user
-
-}
+exports.editRoles = async (payload) => data = await editRoles(payload)
 
 exports.getUsers = async () => data = await getUsers()
 
