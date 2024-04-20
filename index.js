@@ -10,7 +10,8 @@ const port = process.env.PORT || 3002
 app.use(express.json())
 app.use(
   fileUpload({
-    useTempFiles : true
+    useTempFiles : true,
+    tempFileDir: process.env.NODE_ENV == "development" ? "./tmp" : "/tmp",
   })
 )
 
