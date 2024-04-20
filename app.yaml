@@ -1,6 +1,2 @@
 runtime : nodejs20
 service : bcr-auth-ch5
-
-predeploy : 
-  - npm install
-  - npx sequelize db:migrate
