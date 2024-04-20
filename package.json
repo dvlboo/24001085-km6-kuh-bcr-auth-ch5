@@ -1,10 +1,11 @@
 {
-  "name": "bcr-cmd-ch5",
+  "name": "bcr-auth-ch5",
   "version": "1.0.0",
   "description": "this project for challenge of binar fsw2",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "dvlboo",
   "license": "ISC",
